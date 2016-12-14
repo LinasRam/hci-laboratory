@@ -5,11 +5,14 @@
  */
 package tavo.butas.GUI;
 
+import java.awt.Image;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import tavo.butas.Advert;
 
 /**
  *
@@ -42,14 +45,20 @@ public class ResultsJPanel extends javax.swing.JPanel {
             String advert = in.nextLine();
             String[] parts = advert.split(";");
             
-            ResultJPanel result = new ResultJPanel();
-            result.setName(parts[0]);
-            result.setDistrictText(parts[1]);
-            result.setRoomsText(parts[2]);
-            result.setPriceText(parts[3] + " EUR");
+            Advert advertObject = new Advert(parts[0], parts[1], parts[2], parts[3]);
+            
+            ResultJPanel result = new ResultJPanel(advertObject);
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource("/tavo/butas/images/logo.png"));
+            result.getjLabelImage().setIcon(this.getScaledIcon(imageIcon));
             
             this.add(result);
         }
+    }
+    
+    private ImageIcon getScaledIcon(ImageIcon imageIcon){
+        Image image = imageIcon.getImage().getScaledInstance(166, 100, java.awt.Image.SCALE_SMOOTH);
+        
+        return new ImageIcon(image);
     }
 
     /**

@@ -8,7 +8,9 @@ package tavo.butas.GUI;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import tavo.butas.Advert;
 
 /**
  *
@@ -50,6 +52,28 @@ public class MainJFrame extends javax.swing.JFrame {
         jComboBoxRooms.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"-", "1", "2", "3", "4", "5"}));
     }
 
+    private ArrayList<Advert> getAllAdverts() {
+        Scanner in = null;
+        ArrayList<Advert> adverts = new ArrayList<>();
+
+        try {
+            in = new Scanner(new FileReader("adverts.txt"));
+        } catch (FileNotFoundException ex) {
+
+        }
+
+        while (in.hasNextLine()) {
+            String advert = in.nextLine();
+            String[] parts = advert.split(";");
+
+            Advert advertObject = new Advert(parts[0], parts[1], parts[2], parts[3]);
+
+            adverts.add(advertObject);
+        }
+
+        return adverts;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,6 +95,12 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jButtonHelp = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButtonSettings = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButtonMain = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel5.setText("jLabel5");
 
@@ -83,11 +113,16 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jComboBoxRooms.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextFieldPriceFrom.setText("jTextField1");
+        jTextFieldPriceFrom.setText("0");
 
-        jTextFieldPriceTo.setText("jTextField2");
+        jTextFieldPriceTo.setText("1000");
 
         jButtonSearch.setText("Ieškoti");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Mikrorajonas");
 
@@ -144,15 +179,47 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Butai"));
 
+        jButtonHelp.setText("Pagalba");
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jButtonSettings.setText("Nustatymai");
+        jButtonSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSettingsActionPerformed(evt);
+            }
+        });
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jButtonMain.setText("Pagrindinis");
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tavo/butas/images/logo.png"))); // NOI18N
+        jLabel6.setText("jLabel6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonMain)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSettings)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonHelp)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -160,16 +227,52 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addContainerGap()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButtonHelp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButtonSettings, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jButtonMain))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSettingsActionPerformed
+        SettingsJDialog dialog = new SettingsJDialog(this, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jButtonSettingsActionPerformed
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        ResultsJPanel resultsJPanel = new ResultsJPanel();
+        resultsJPanel.removeAll();
+
+        ArrayList<Advert> adverts = this.getAllAdverts();
+
+        String district = jComboBoxDistrict.getSelectedItem().toString();
+        String rooms = jComboBoxRooms.getSelectedItem().toString();
+
+        for (Advert advert : adverts) {
+            if (advert.getDistrict().equals(district)) {
+                ResultJPanel resultJPanel = new ResultJPanel(advert);
+                resultsJPanel.add(resultJPanel);
+                System.out.println("1");
+            }
+        }
+
+        jScrollPane1.getViewport().add(resultsJPanel);
+        this.repaint();
+    }//GEN-LAST:event_jButtonSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,7 +310,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonHelp;
+    private javax.swing.JButton jButtonMain;
     private javax.swing.JButton jButtonSearch;
+    private javax.swing.JButton jButtonSettings;
     private javax.swing.JComboBox<String> jComboBoxDistrict;
     private javax.swing.JComboBox<String> jComboBoxRooms;
     private javax.swing.JLabel jLabel1;
@@ -215,8 +321,11 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextFieldPriceFrom;
     private javax.swing.JTextField jTextFieldPriceTo;
     // End of variables declaration//GEN-END:variables
