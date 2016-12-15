@@ -29,7 +29,6 @@ public class ResultsJPanel extends javax.swing.JPanel {
     public ResultsJPanel() {
         initComponents();
         
-//        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setLayout(new VerticalBagLayout());
         
         this.fillResults();
@@ -49,10 +48,10 @@ public class ResultsJPanel extends javax.swing.JPanel {
             String advert = in.nextLine();
             String[] parts = advert.split(";");
             
-            Advert advertObject = new Advert(parts[0], parts[1], parts[2], parts[3]);
+            Advert advertObject = new Advert(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
             
             ResultJPanel result = new ResultJPanel(advertObject);
-            ImageIcon imageIcon = new ImageIcon(getClass().getResource("/tavo/butas/images/logo.png"));
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource(advertObject.getImageUrl()));
             result.getjLabelImage().setIcon(this.getScaledIcon(imageIcon));
             
             this.add(result);

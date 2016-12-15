@@ -1,3 +1,3 @@
-Geras butas;Antakalnis;1;100
-Geras butas;Seskine;1;100
-Geras butas;Antakalnis;1;100
+Geras butas;Antakalnis;1;100;50;butas1.jpg
+Geras butas;Seskine;1;100;50;butas1.jpg
+Geras butas;Antakalnis;1;100;50;butas1.jpg

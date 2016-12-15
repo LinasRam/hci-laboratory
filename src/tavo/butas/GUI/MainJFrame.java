@@ -27,6 +27,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
 
+        this.setLocationRelativeTo(null);
         this.setComboBoxes();
 
         ResultsJPanel resultsJPanel = new ResultsJPanel();
@@ -70,7 +71,7 @@ public class MainJFrame extends javax.swing.JFrame {
             String advert = in.nextLine();
             String[] parts = advert.split(";");
 
-            Advert advertObject = new Advert(parts[0], parts[1], parts[2], parts[3]);
+            Advert advertObject = new Advert(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
 
             adverts.add(advertObject);
         }
@@ -217,7 +218,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldPriceTo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jButtonSearch)
                 .addContainerGap())
         );
@@ -253,7 +254,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonMain)
@@ -294,6 +295,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void jButtonSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSettingsActionPerformed
         SettingsJDialog dialog = new SettingsJDialog(this, true);
+        dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
     }//GEN-LAST:event_jButtonSettingsActionPerformed
 
