@@ -32,7 +32,7 @@ public class ResultJPanel extends javax.swing.JPanel {
         this.jLabelName.setText(advert.getName());
         this.jLabelDistrict.setText(advert.getDistrict());
         this.jLabelRooms.setText(advert.getRooms());
-        this.jLabelPrice.setText(advert.getPrice());
+        this.jLabelPrice.setText(advert.getPrice() + " EUR");
     }
 
     public JLabel getjLabelImage() {

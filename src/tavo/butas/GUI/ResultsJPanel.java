@@ -5,6 +5,7 @@
  */
 package tavo.butas.GUI;
 
+import java.awt.ComponentOrientation;
 import java.awt.Image;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import sun.awt.VerticalBagLayout;
 import tavo.butas.Advert;
 
 /**
@@ -26,7 +29,8 @@ public class ResultsJPanel extends javax.swing.JPanel {
     public ResultsJPanel() {
         initComponents();
         
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+//        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new VerticalBagLayout());
         
         this.fillResults();
     }

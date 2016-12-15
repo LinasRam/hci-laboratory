@@ -5,11 +5,14 @@
  */
 package tavo.butas.GUI;
 
+import java.awt.Color;
+import java.awt.Image;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
 import tavo.butas.Advert;
 
 /**
@@ -42,6 +45,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         }
 
+        districts.add("-");
         while (in.hasNextLine()) {
             String district = in.nextLine();
             districts.add(district);
@@ -72,6 +76,48 @@ public class MainJFrame extends javax.swing.JFrame {
         }
 
         return adverts;
+    }
+
+    private ImageIcon getScaledIcon(ImageIcon imageIcon) {
+        Image image = imageIcon.getImage().getScaledInstance(166, 100, java.awt.Image.SCALE_SMOOTH);
+
+        return new ImageIcon(image);
+    }
+
+    private int countValidFields(Advert advert) {
+        String district = jComboBoxDistrict.getSelectedItem().toString();
+        String rooms = jComboBoxRooms.getSelectedItem().toString();
+        int priceFrom = 0;
+        int priceTo = 0;
+        try {
+            priceFrom = Integer.parseInt(jTextFieldPriceFrom.getText());
+            jTextFieldPriceFrom.setBackground(Color.white);
+        } catch (Exception e) {
+            jTextFieldPriceFrom.setBackground(Color.red);
+        }
+        try {
+            priceTo = Integer.parseInt(jTextFieldPriceTo.getText());
+            jTextFieldPriceTo.setBackground(Color.white);
+        } catch (Exception e) {
+            jTextFieldPriceTo.setBackground(Color.red);
+        }
+
+        int validation = 0;
+
+        if (advert.getDistrict().equals(district) || district.equals("-")) {
+            validation++;
+        }
+        if (advert.getRooms().equals(rooms) || rooms.equals("-")) {
+            validation++;
+        }
+        if (Integer.parseInt(advert.getPrice()) >= priceFrom) {
+            validation++;
+        }
+        if (Integer.parseInt(advert.getPrice()) <= priceTo) {
+            validation++;
+        }
+
+        return validation;
     }
 
     /**
@@ -105,7 +151,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 500));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Paieška"));
 
@@ -209,8 +254,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonMain)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,15 +277,14 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButtonHelp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButtonSettings, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jButtonMain))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButtonHelp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonSettings, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator2)
+                            .addComponent(jButtonMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
@@ -259,14 +303,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
         ArrayList<Advert> adverts = this.getAllAdverts();
 
-        String district = jComboBoxDistrict.getSelectedItem().toString();
-        String rooms = jComboBoxRooms.getSelectedItem().toString();
-
         for (Advert advert : adverts) {
-            if (advert.getDistrict().equals(district)) {
-                ResultJPanel resultJPanel = new ResultJPanel(advert);
+            ResultJPanel resultJPanel = new ResultJPanel(advert);
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource("/tavo/butas/images/logo.png"));
+            resultJPanel.getjLabelImage().setIcon(this.getScaledIcon(imageIcon));
+
+            if (this.countValidFields(advert) == 4) {
                 resultsJPanel.add(resultJPanel);
-                System.out.println("1");
             }
         }
 
