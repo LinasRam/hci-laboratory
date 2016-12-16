@@ -1,3 +1,16 @@
-Geras butas;Antakalnis;1;100;50;butas1.jpg
-Geras butas;Seskine;1;100;50;butas1.jpg
-Geras butas;Antakalnis;1;100;50;butas1.jpg
+Geras butas;Antakalnis;1;200;50;butas1.jpg
+Butas;Seskine;1;100;50;butas2.jpg
+2 kambariu butas;Antakalnis;2;150;50;butas3.jpg
+Naujas butas;Zirmunai;2;300;100;butas4.jpg
+3 kambariu butas;Virsuliskes;4;400;120;butas5.jpg
+Isskirtinis pasiulymas;Visoriai;5;500;140;butas6.png
+Butas naujos statybos name;Justiniskes;3;350;80;butas7.jpg
+Vertas demesio butas;Naujininkai;4;180;100;butas8.jpg
+Butas ramioje aplinkoje;Bajorai;4;600;110;butas9.jpg
+Butas uzmiestyje;Bajorai;4;550;90;butas10.jpg
+Pigus butas;Sauletekis;1;250;30;butas1.jpg
+Prabangus butas;Seskine;5;750;130;butas2.jpg
+Butas laukia nauju nuomininku;Jeruzale;5;280;115;butas3.jpg
+Jaukus butas;Senamiestis;2;470;50;butas4.jpg
+Puikus butas;Naujamiestis;2;399;60;butas5.jpg
+Naujai irengtas butas;Pasilaiciai;3;420;70;butas6.png

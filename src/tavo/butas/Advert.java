@@ -9,7 +9,7 @@ package tavo.butas;
  *
  * @author Linas
  */
-public class Advert {
+public class Advert implements Comparable<Advert> {
 
     private String name;
     private String district;
@@ -86,6 +86,11 @@ public class Advert {
         float taxes = Float.parseFloat(this.getCombinedTaxes()) + Float.parseFloat(this.getPrice());
 
         return String.format("%.2f", taxes);
+    }
+
+    @Override
+    public int compareTo(Advert o) {
+        return Integer.parseInt(this.getPrice()) - Integer.parseInt(o.getPrice());
     }
 
 }

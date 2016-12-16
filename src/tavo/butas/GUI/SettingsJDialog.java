@@ -5,6 +5,7 @@
  */
 package tavo.butas.GUI;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -159,20 +160,66 @@ public class SettingsJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-        PrintWriter writer = null;
+        int electricity = 0;
+        int water = 0;
+        int heating = 0;
+
+        boolean valid = true;
 
         try {
-            writer = new PrintWriter("settings.txt");
-        } catch (FileNotFoundException ex) {
+            electricity = Integer.parseInt(jTextFieldElectricity.getText());
+            if (electricity < 0) {
+                jTextFieldElectricity.setBackground(Color.red);
+                valid = false;
+            } else {
+                jTextFieldElectricity.setBackground(Color.white);
+            }
+        } catch (Exception e) {
+            jTextFieldElectricity.setBackground(Color.red);
+            valid = false;
         }
 
-        writer.println(jTextFieldElectricity.getText());
-        writer.println(jTextFieldWater.getText());
-        writer.println(jTextFieldHeating.getText());
-        
-        writer.close();
-        
-        this.dispose();
+        try {
+            water = Integer.parseInt(jTextFieldWater.getText());
+            if (water < 0) {
+                jTextFieldWater.setBackground(Color.red);
+                valid = false;
+            } else {
+                jTextFieldWater.setBackground(Color.white);
+            }
+        } catch (Exception e) {
+            jTextFieldWater.setBackground(Color.red);
+            valid = false;
+        }
+
+        try {
+            heating = Integer.parseInt(jTextFieldHeating.getText());
+            if (heating < 0) {
+                jTextFieldHeating.setBackground(Color.red);
+                valid = false;
+            } else {
+                jTextFieldHeating.setBackground(Color.white);
+            }
+        } catch (Exception e) {
+            jTextFieldHeating.setBackground(Color.red);
+            valid = false;
+        }
+        if (valid) {
+            PrintWriter writer = null;
+
+            try {
+                writer = new PrintWriter("settings.txt");
+            } catch (FileNotFoundException ex) {
+            }
+
+            writer.println(electricity);
+            writer.println(water);
+            writer.println(heating);
+
+            writer.close();
+
+            this.dispose();
+        }
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed

@@ -10,7 +10,7 @@ import java.awt.Image;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
 import tavo.butas.Advert;
@@ -51,6 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
             String district = in.nextLine();
             districts.add(district);
         }
+        Collections.sort(districts);
         String[] districtsArray = districts.toArray(new String[0]);
 
         jComboBoxDistrict.setModel(new javax.swing.DefaultComboBoxModel<>(districtsArray));
@@ -75,6 +76,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
             adverts.add(advertObject);
         }
+        
+        Collections.sort(adverts);
 
         return adverts;
     }
@@ -226,6 +229,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Butai"));
 
         jButtonHelp.setText("Pagalba");
+        jButtonHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHelpActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -239,6 +247,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jButtonMain.setText("Pagrindinis");
+        jButtonMain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMainActionPerformed(evt);
+            }
+        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tavo/butas/images/logo.png"))); // NOI18N
         jLabel6.setText("jLabel6");
@@ -307,7 +320,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         for (Advert advert : adverts) {
             ResultJPanel resultJPanel = new ResultJPanel(advert);
-            ImageIcon imageIcon = new ImageIcon(getClass().getResource("/tavo/butas/images/logo.png"));
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource(advert.getImageUrl()));
             resultJPanel.getjLabelImage().setIcon(this.getScaledIcon(imageIcon));
 
             if (this.countValidFields(advert) == 4) {
@@ -318,6 +331,20 @@ public class MainJFrame extends javax.swing.JFrame {
         jScrollPane1.getViewport().add(resultsJPanel);
         this.repaint();
     }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jButtonMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainActionPerformed
+        this.setComboBoxes();
+
+        ResultsJPanel resultsJPanel = new ResultsJPanel();
+        resultsJPanel.setVisible(true);
+
+        jScrollPane1.getViewport().add(resultsJPanel);
+    }//GEN-LAST:event_jButtonMainActionPerformed
+
+    private void jButtonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
+        HelpJDialog helpJDialog = new HelpJDialog(this, false);
+        helpJDialog.setVisible(true);
+    }//GEN-LAST:event_jButtonHelpActionPerformed
 
     /**
      * @param args the command line arguments

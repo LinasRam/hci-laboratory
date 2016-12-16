@@ -5,15 +5,13 @@
  */
 package tavo.butas.GUI;
 
-import java.awt.ComponentOrientation;
 import java.awt.Image;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import sun.awt.VerticalBagLayout;
 import tavo.butas.Advert;
 
@@ -28,15 +26,15 @@ public class ResultsJPanel extends javax.swing.JPanel {
      */
     public ResultsJPanel() {
         initComponents();
-        
+
         this.setLayout(new VerticalBagLayout());
-        
+
         this.fillResults();
     }
-    
-    private void fillResults(){
+
+    private void fillResults() {
         Scanner in = null;
-        ArrayList<String> adverts = new ArrayList<>();
+        ArrayList<Advert> adverts = new ArrayList<>();
 
         try {
             in = new Scanner(new FileReader("adverts.txt"));
@@ -47,20 +45,25 @@ public class ResultsJPanel extends javax.swing.JPanel {
         while (in.hasNextLine()) {
             String advert = in.nextLine();
             String[] parts = advert.split(";");
-            
+
             Advert advertObject = new Advert(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
-            
-            ResultJPanel result = new ResultJPanel(advertObject);
-            ImageIcon imageIcon = new ImageIcon(getClass().getResource(advertObject.getImageUrl()));
+            adverts.add(advertObject);
+        }
+
+        Collections.sort(adverts);
+
+        for (Advert advert : adverts) {
+            ResultJPanel result = new ResultJPanel(advert);
+            ImageIcon imageIcon = new ImageIcon(getClass().getResource(advert.getImageUrl()));
             result.getjLabelImage().setIcon(this.getScaledIcon(imageIcon));
-            
+
             this.add(result);
         }
     }
-    
-    private ImageIcon getScaledIcon(ImageIcon imageIcon){
+
+    private ImageIcon getScaledIcon(ImageIcon imageIcon) {
         Image image = imageIcon.getImage().getScaledInstance(166, 100, java.awt.Image.SCALE_SMOOTH);
-        
+
         return new ImageIcon(image);
     }
 
