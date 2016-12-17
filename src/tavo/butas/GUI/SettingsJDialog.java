@@ -38,6 +38,7 @@ public class SettingsJDialog extends javax.swing.JDialog {
 
         jTextFieldElectricity.setText(in.nextLine());
         jTextFieldWater.setText(in.nextLine());
+        jTextFieldHotWater.setText(in.nextLine());
         jTextFieldHeating.setText(in.nextLine());
     }
 
@@ -62,6 +63,9 @@ public class SettingsJDialog extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jButtonSave = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFieldHotWater = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -72,7 +76,7 @@ public class SettingsJDialog extends javax.swing.JDialog {
 
         jLabel2.setText("Elektros:");
 
-        jLabel3.setText("Vandens:");
+        jLabel3.setText("Šalto vandens:");
 
         jLabel4.setText("Šilumos:");
 
@@ -96,6 +100,10 @@ public class SettingsJDialog extends javax.swing.JDialog {
             }
         });
 
+        jLabel8.setText("Karšto vandens:");
+
+        jLabel9.setText("m3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,28 +112,36 @@ public class SettingsJDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldElectricity)
-                            .addComponent(jTextFieldWater)
-                            .addComponent(jTextFieldHeating, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldHotWater, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldHeating)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldElectricity)
+                                    .addComponent(jTextFieldWater, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel1)))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel7))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -144,30 +160,35 @@ public class SettingsJDialog extends javax.swing.JDialog {
                     .addComponent(jTextFieldWater, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jTextFieldHeating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextFieldHotWater, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextFieldHeating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSave)
                     .addComponent(jButtonCancel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-        int electricity = 0;
-        int water = 0;
-        int heating = 0;
+        float electricity = 0;
+        float water = 0;
+        float hotWater = 0;
+        float heating = 0;
 
         boolean valid = true;
 
         try {
-            electricity = Integer.parseInt(jTextFieldElectricity.getText());
+            electricity = Float.parseFloat(jTextFieldElectricity.getText());
             if (electricity < 0) {
                 jTextFieldElectricity.setBackground(Color.red);
                 valid = false;
@@ -180,7 +201,7 @@ public class SettingsJDialog extends javax.swing.JDialog {
         }
 
         try {
-            water = Integer.parseInt(jTextFieldWater.getText());
+            water = Float.parseFloat(jTextFieldWater.getText());
             if (water < 0) {
                 jTextFieldWater.setBackground(Color.red);
                 valid = false;
@@ -193,7 +214,20 @@ public class SettingsJDialog extends javax.swing.JDialog {
         }
 
         try {
-            heating = Integer.parseInt(jTextFieldHeating.getText());
+            hotWater = Float.parseFloat(jTextFieldHotWater.getText());
+            if (water < 0) {
+                jTextFieldHotWater.setBackground(Color.red);
+                valid = false;
+            } else {
+                jTextFieldHotWater.setBackground(Color.white);
+            }
+        } catch (Exception e) {
+            jTextFieldHotWater.setBackground(Color.red);
+            valid = false;
+        }
+
+        try {
+            heating = Float.parseFloat(jTextFieldHeating.getText());
             if (heating < 0) {
                 jTextFieldHeating.setBackground(Color.red);
                 valid = false;
@@ -214,6 +248,7 @@ public class SettingsJDialog extends javax.swing.JDialog {
 
             writer.println(electricity);
             writer.println(water);
+            writer.println(hotWater);
             writer.println(heating);
 
             writer.close();
@@ -278,8 +313,11 @@ public class SettingsJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextFieldElectricity;
     private javax.swing.JTextField jTextFieldHeating;
+    private javax.swing.JTextField jTextFieldHotWater;
     private javax.swing.JTextField jTextFieldWater;
     // End of variables declaration//GEN-END:variables
 }

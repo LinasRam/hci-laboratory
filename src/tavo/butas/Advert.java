@@ -62,7 +62,8 @@ public class Advert implements Comparable<Advert> {
     public String getWaterTaxes() {
         Settings settings = new Settings();
 
-        float taxes = settings.getWaterPrice() * settings.getWaterConsumption();
+        float taxes = settings.getWaterPrice() * settings.getWaterConsumption()
+                + settings.getHeatingPrice() * settings.getHotWaterConsumption();
 
         return String.format("%.2f", taxes);
     }

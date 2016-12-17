@@ -17,11 +17,13 @@ public class Settings {
 
     private float electricityPrice;
     private float waterPrice;
+    private float hotWaterPrice;
     private float heatingPrice;
 
-    private int electricityConsumption;
-    private int waterConsumption;
-    private int heatingConsumption;
+    private float electricityConsumption;
+    private float waterConsumption;
+    private float hotWaterConsumption;
+    private float heatingConsumption;
 
     public Settings() {
         Scanner in = null;
@@ -34,6 +36,7 @@ public class Settings {
 
         this.electricityPrice = in.nextFloat();
         this.waterPrice = in.nextFloat();
+        this.hotWaterPrice = in.nextFloat();
         this.heatingPrice = in.nextFloat();
 
         try {
@@ -42,9 +45,10 @@ public class Settings {
 
         }
 
-        this.electricityConsumption = in.nextInt();
-        this.waterConsumption = in.nextInt();
-        this.heatingConsumption = in.nextInt();
+        this.electricityConsumption = in.nextFloat();
+        this.waterConsumption = in.nextFloat();
+        this.hotWaterConsumption = in.nextFloat();
+        this.heatingConsumption = in.nextFloat();
     }
 
     public float getElectricityPrice() {
@@ -54,20 +58,28 @@ public class Settings {
     public float getWaterPrice() {
         return waterPrice;
     }
+    
+    public float getHotWaterPrice() {
+        return hotWaterPrice;
+    }
 
     public float getHeatingPrice() {
         return heatingPrice;
     }
 
-    public int getElectricityConsumption() {
+    public float getElectricityConsumption() {
         return electricityConsumption;
     }
 
-    public int getWaterConsumption() {
+    public float getWaterConsumption() {
         return waterConsumption;
     }
+    
+    public float getHotWaterConsumption() {
+        return hotWaterConsumption;
+    }
 
-    public int getHeatingConsumption() {
+    public float getHeatingConsumption() {
         return heatingConsumption;
     }
 
