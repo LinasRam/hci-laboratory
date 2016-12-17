@@ -82,6 +82,7 @@ public class AdvertJFrame extends javax.swing.JFrame {
         jLabelArea = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Informacija apie butą");
         setResizable(false);
 
         jLabelName.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
