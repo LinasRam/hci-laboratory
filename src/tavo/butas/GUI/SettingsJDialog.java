@@ -68,6 +68,7 @@ public class SettingsJDialog extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Nustatymai");
         setModal(true);
         setResizable(false);
 

@@ -155,6 +155,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tavo Butas");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Paieška"));
 
