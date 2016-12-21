@@ -216,7 +216,7 @@ public class SettingsJDialog extends javax.swing.JDialog {
 
         try {
             hotWater = Float.parseFloat(jTextFieldHotWater.getText());
-            if (water < 0) {
+            if (hotWater < 0) {
                 jTextFieldHotWater.setBackground(Color.red);
                 valid = false;
             } else {

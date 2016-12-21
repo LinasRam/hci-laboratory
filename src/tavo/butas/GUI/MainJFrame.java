@@ -95,13 +95,21 @@ public class MainJFrame extends javax.swing.JFrame {
         int priceTo = 0;
         try {
             priceFrom = Integer.parseInt(jTextFieldPriceFrom.getText());
-            jTextFieldPriceFrom.setBackground(Color.white);
+            if (priceFrom < 0) {
+                jTextFieldPriceFrom.setBackground(Color.red);
+            } else {
+                jTextFieldPriceFrom.setBackground(Color.white);
+            }
         } catch (Exception e) {
             jTextFieldPriceFrom.setBackground(Color.red);
         }
         try {
             priceTo = Integer.parseInt(jTextFieldPriceTo.getText());
-            jTextFieldPriceTo.setBackground(Color.white);
+            if (priceTo < 0) {
+                jTextFieldPriceTo.setBackground(Color.red);
+            } else {
+                jTextFieldPriceTo.setBackground(Color.white);
+            }
         } catch (Exception e) {
             jTextFieldPriceTo.setBackground(Color.red);
         }
@@ -354,6 +362,10 @@ public class MainJFrame extends javax.swing.JFrame {
         resultsJPanel.setVisible(true);
 
         jScrollPane1.getViewport().add(resultsJPanel);
+        jTextFieldPriceFrom.setBackground(Color.white);
+        jTextFieldPriceFrom.setText("0");
+        jTextFieldPriceTo.setBackground(Color.white);
+        jTextFieldPriceTo.setText("1000");
     }//GEN-LAST:event_jButtonMainActionPerformed
 
     private void jButtonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
